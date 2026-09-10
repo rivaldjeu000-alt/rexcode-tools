@@ -1,0 +1,157 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<RexRoot>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex('#0A0A0F')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        size_hint_y: None
+        height: '60dp'
+        padding: [10, 5]
+        spacing: 5
+
+        Label:
+            text: 'RexCode Tools'
+            font_size: '20sp'
+            bold: True
+            color: get_color_from_hex('#FF1744')
+            halign: 'left'
+            valign: 'middle'
+            text_size: self.size
+
+        Label:
+            id: status_label
+            text: 'READY'
+            font_size: '12sp'
+            color: get_color_from_hex('#00E5FF')
+            halign: 'right'
+            valign: 'middle'
+            text_size: self.size
+            size_hint_x: None
+            width: '100dp'
+
+        Button:
+            text: 'SET'
+            font_size: '14sp'
+            size_hint_x: None
+            width: '60dp'
+            background_normal: ''
+            background_color: get_color_from_hex('#1A0B1F')
+            on_release: app.buka_settings()
+
+    BoxLayout:
+        size_hint_y: None
+        height: '70dp'
+        padding: [10, 5]
+        spacing: 8
+
+        Button:
+            id: btn_pick
+            text: '1. PILIH'
+            font_size: '12sp'
+            background_normal: ''
+            background_color: get_color_from_hex('#7B1FA2')
+            color: get_color_from_hex('#FFFFFF')
+            on_release: app.pilih_file()
+
+        Button:
+            id: btn_decode
+            text: '2. DECODE'
+            font_size: '12sp'
+            background_normal: ''
+            background_color: get_color_from_hex('#1A0B1F')
+            color: get_color_from_hex('#B0B0C0')
+            disabled: True
+
+        Button:
+            id: btn_encode
+            text: '3. ENCODE'
+            font_size: '12sp'
+            background_normal: ''
+            background_color: get_color_from_hex('#1A0B1F')
+            color: get_color_from_hex('#B0B0C0')
+            disabled: True
+            on_release: app.proses_save()
+
+    BoxLayout:
+        size_hint_y: None
+        height: '45dp'
+        padding: [10, 5]
+        spacing: 5
+
+        Button:
+            id: tab_stats
+            text: 'STATS'
+            font_size: '11sp'
+            background_normal: ''
+            background_color: get_color_from_hex('#FF1744')
+            color: get_color_from_hex('#FFFFFF')
+            on_release: app.switch_tab('stats')
+
+        Button:
+            id: tab_currency
+            text: 'CURRENCY'
+            font_size: '11sp'
+            background_normal: ''
+            background_color: get_color_from_hex('#1A0B1F')
+            color: get_color_from_hex('#B0B0C0')
+            on_release: app.switch_tab('currency')
+
+        Button:
+            id: tab_resource
+            text: 'RESOURCE'
+            font_size: '11sp'
+            background_normal: ''
+            background_color: get_color_from_hex('#1A0B1F')
+            color: get_color_from_hex('#B0B0C0')
+            on_release: app.switch_tab('resource')
+
+    ScrollView:
+        do_scroll_x: False
+
+        BoxLayout:
+            id: content_box
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            padding: [10, 5]
+            spacing: 8
+
+    BoxLayout:
+        size_hint_y: None
+        height: '120dp'
+        orientation: 'vertical'
+        padding: [10, 5]
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex('#1A0B1F')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: 'LOG'
+            font_size: '12sp'
+            bold: True
+            color: get_color_from_hex('#00E5FF')
+            size_hint_y: None
+            height: '20dp'
+            halign: 'left'
+            text_size: self.size
+
+        ScrollView:
+            Label:
+                id: log_label
+                text: '> Menunggu file...'
+                font_size: '10sp'
+                color: get_color_from_hex('#00FF88')
+                halign: 'left'
+                valign: 'top'
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
